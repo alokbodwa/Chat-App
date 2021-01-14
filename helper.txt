@@ -1,0 +1,29 @@
+io.on('connection',socket => {
+    console.log('New WS connection');
+     ye connection milne pe call ho jaega and 'New WS connection' print krega, node ke server me
+
+socket.emit('message', 'Welcome to Chat App');
+socket.broadcast.emit('message','new user just joined the chat');
+    Phir ye call hoga io.on(function line 1) ke andar hi h ye. emit tells ki message ko main.js ko bhejo. Ab ye message jahan bhi main.js me milega (basically jahan hum likhenge), wahan 'Welcome to Chat App' print kr dega (client ke console me)
+    similarly message ko humne line 6 me bhi pass kiya h. means 'new user just joined the chat' will be displayed on other people's screen. broadcast is a default function
+
+socket.on('disconnect',() => {
+        io.emit('message','A user has just left the chat');
+    });
+    similarly jab user disconnect hoga tab bhi 'message' argument pass hoga and it will print 'A user has just left the chat' to all the users. remeber io.emit is default func and displays the message to all users.
+
+
+////////////////////////////////////////////////////
+// server-side
+io.on("connection", (socket) => {
+  socket.on("hello", (arg) => {
+    console.log(arg); // world
+  });
+});
+
+// client-side
+socket.emit("hello", "world");
+    taken from official documentation. io.on calls my server (node.js here). Emit means - event is emitted and is expected to be taken by server or client(depending on who emitted the event); Here hello is emitted by client-side (chrome) and is received by server side(by line 19). Jab socket.emit emit krega to socket.on receive krega.
+
+// Why querySelector and not getElementByClassName - A variable generated with querySelectorAll will contain the elements that fulfilled the selector at the moment the method was called.
+A variable generated with getElementsByClassName will contain the elements that fulfilled the selector when it is used (that may be different from the moment the method was called). 
