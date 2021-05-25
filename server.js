@@ -6,7 +6,6 @@ const formatMessage = require('./utils/messages');
 const { userJoin, getCurrentUser, userLeaves, getRoomUsers } = require('./utils/users');
 // const { connect } = require('http2');
 
-
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -58,13 +57,10 @@ io.on('connection',socket => {
 
     });
 
-
 });
 
 const PORT = 3000 || process.env.PORT;
 
 server.listen(PORT, () => console.log (`server running on port ${PORT}`));
-
-
 
 // start fromm 50 min 
